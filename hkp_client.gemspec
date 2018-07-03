@@ -6,12 +6,14 @@ require "hkp_client/version"
 Gem::Specification.new do |spec|
   spec.name          = "hkp_client"
   spec.version       = HkpClient::VERSION
-  spec.authors       = ["Sebastian Skałacki"]
-  spec.email         = ["skalee@gmail.com"]
+  spec.authors       = ["Ribose Inc."]
+  spec.email         = ["open.source@ribose.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = "A minimalist client for PGP public keyservers."
+  spec.description   = "A minimalist HKP (OpenPGP HTTP Keyserver Protocol) " \
+                       "client, which queries PGP public keyservers, " \
+                       "and downloads public keys."
+  spec.homepage      = "https://github.com/riboseinc/hkp_client"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
