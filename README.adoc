@@ -1,4 +1,4 @@
-HkpClient
+HKPClient
 ---------
 
 image:https://img.shields.io/gem/v/hkp_client.svg["Gem Version", link="https://rubygems.org/gems/hkp_client"]
@@ -8,61 +8,49 @@ image:https://img.shields.io/codeclimate/maintainability/riboseinc/hkp_client.sv
 
 :source-highlighter: pygments
 
-Welcome to your new gem! In this directory, you’ll find the files you
-need to be able to package up your Ruby library into a gem. Put your
-Ruby code in the file `lib/hkp_client`. To experiment with that code,
-run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
-Installation
-~~~~~~~~~~~~
-
-Add this line to your application’s Gemfile:
-
-[source,ruby]
-----
-gem 'hkp_client'
-----
-
-And then execute:
-
-....
-$ bundle
-....
-
-Or install it yourself as:
-
-....
-$ gem install hkp_client
-....
+HKP Client is a minimalist HKP (OpenPGP HTTP Keyserver Protocol) client, which
+queries PGP public keyservers, and downloads public keys.  It does not support
+submitting keys to keyserver.
 
 Usage
 ~~~~~
 
 TODO: Write usage instructions here
 
-Development
-~~~~~~~~~~~
-
-After checking out the repo, run `bin/setup` to install dependencies.
-Then, run `rake spec` to run the tests. You can also run `bin/console`
-for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run
-`bundle exec rake install`. To release a new version, update the version
-number in `version.rb`, and then run `bundle exec rake release`, which
-will create a git tag for the version, push git commits and tags, and
-push the `.gem` file to https://rubygems.org[rubygems.org].
-
 Contributing
 ~~~~~~~~~~~~
 
-Bug reports and pull requests are welcome on GitHub at
-https://github.com/[USERNAME]/hkp_client.
+First, thank you for contributing!  We love pull requests from everyone.
+By participating in this project, you hereby grant Ribose Inc. the right to
+grant or transfer an unlimited number of non exclusive licenses or sub-licenses
+to third parties, under the copyright covering the contribution to use
+the contribution by all means.
+
+Here are a few technical guidelines to follow:
+
+1.  Open an issue to discuss a new feature prior implementing it.
+2.  Write tests for new features or bugfixes.
+3.  Make sure the entire test suite passes locally and on CI.
+4.  Follow our style guide (you can validate your contribution locally with
+    Rubocop, also Hound CI will report any offences when you open a pull
+    request).
+
+Credits
+~~~~~~~
+
+This gem is developed, maintained and funded by
+https://www.ribose.com[Ribose Inc].
 
 License
 ~~~~~~~
 
 The gem is available as open source under the terms of the
 https://opensource.org/licenses/MIT[MIT License].
+
+Resources
+~~~~~~~~~
+
+- https://tools.ietf.org/html/draft-shaw-openpgp-hkp-00[HKP protocol definition (IETF draft)]
+- http://www.mit.edu/afs/net.mit.edu/project/pks/thesis/paper/thesis.html[A PGP Public Key Server thesis]
+- https://www.openpgp.org/about/standard/[More documents on OpenPGP]
+- https://sks-keyservers.net/[SKS keyservers]
