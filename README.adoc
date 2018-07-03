@@ -1,6 +1,13 @@
 HkpClient
 ---------
 
+image:https://img.shields.io/gem/v/hkp_client.svg["Gem Version", link="https://rubygems.org/gems/hkp_client"]
+image:https://img.shields.io/travis/riboseinc/hkp_client/master.svg["Build Status", link="https://travis-ci.org/riboseinc/hkp_client"]
+image:https://img.shields.io/codecov/c/github/riboseinc/hkp_client.svg["Test Coverage", link="https://codecov.io/gh/riboseinc/hkp_client"]
+image:https://img.shields.io/codeclimate/maintainability/riboseinc/hkp_client.svg["Maintainability", link="https://codeclimate.com/github/riboseinc/hkp_client/maintainability"]
+
+:source-highlighter: pygments
+
 Welcome to your new gem! In this directory, you’ll find the files you
 need to be able to package up your Ruby library into a gem. Put your
 Ruby code in the file `lib/hkp_client`. To experiment with that code,
