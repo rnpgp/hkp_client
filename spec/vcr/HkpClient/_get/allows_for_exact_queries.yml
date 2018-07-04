@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://pool.sks-keyservers.net:11371/pks/lookup?exact=on&op=get&options=mr&search=linus@example.com
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Jul 2018 13:49:20 GMT
+      Content-Type:
+      - application/pgp-keys; charset=UTF-8
+      Content-Length:
+      - '3303'
+      Connection:
+      - keep-alive
+      Server:
+      - sks_www/1.1.6
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Hkp-Results-Count:
+      - '1'
+      Content-Disposition:
+      - attachment; filename=gpgkey.asc
+      Access-Control-Allow-Origin:
+      - "*"
+      Via:
+      - 1.1 sks-lhr.semperen.com:11371 (nginx)
+    body:
+      encoding: UTF-8
+      string: "-----BEGIN PGP PUBLIC KEY BLOCK-----\nVersion: SKS 1.1.6\nComment:
+        Hostname: sks-lhr.semperen.com\n\n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\nc2gFngOSVOrxJswb8/BUkA==\n=jGC1\n-----END
+        PGP PUBLIC KEY BLOCK-----\r\n"
+    http_version: 
+  recorded_at: Wed, 04 Jul 2018 13:49:20 GMT
+recorded_with: VCR 4.0.0
