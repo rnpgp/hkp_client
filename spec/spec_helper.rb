@@ -1,5 +1,5 @@
-require "bundler/setup"
-require "hkp_client"
+require "bundler"
+Bundler.require :default, :development
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
