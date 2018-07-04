@@ -19,6 +19,16 @@ module HkpClient
 
   module_function
 
+  # Fetches a keyring containing open PGP keys from keyserver, and returns it
+  # as an ASCII-armoured string.
+  #
+  # @param string [String] a search string
+  # @param keyserver (see #query)
+  # @return [String] keyring
+  # @return [nil] if key could not be found
+  # @raise [HkpClient::Error] if server responds with different HTTP code than
+  #   200 or 404
+  # @raise any other exceptions caused by networking problems
   def get(string, keyserver: DEFAULT_KEYSERVER, exact: false)
     resp = query(
       keyserver: keyserver,
@@ -31,6 +41,16 @@ module HkpClient
     Util.response_body_or_error_or_nil(resp)
   end
 
+  # Performs a search query on keyserver, and returns a list of key
+  # descriptions (see README for details).
+  #
+  # @param string (see #get)
+  # @param exact [Boolean] whether to perform an "exact" search
+  # @param keyserver (see #query)
+  # @return [Array<Hash>] list of found keys, possibly empty
+  # @raise [HkpClient::Error] if server responds with different HTTP code than
+  #   200 or 404
+  # @raise any other exceptions caused by networking problems
   def search(string, keyserver: DEFAULT_KEYSERVER, exact: false)
     resp = query(
       keyserver: keyserver,
@@ -44,12 +64,19 @@ module HkpClient
     Util.parse_search_response_entries(resp_body)
   end
 
+  # Makes a query to keyserver.  Any surplus keyword arguments will be used
+  # as request parameters.
+  #
+  # @param keyserver [String] a keyserver to query
+  # @return [Faraday::Response]
+  # @raise any exceptions caused by networking problems
   def query(keyserver: DEFAULT_KEYSERVER, **query_args)
     uri = (URI === keyserver ? keyserver.dup : URI.parse(keyserver))
     use_ssl = %w[https hkps].include?(uri.scheme)
     Faraday.new(url: uri, ssl: use_ssl).get("/pks/lookup", query_args)
   end
 
+  # Utilities to be considered as kinda private API.
   module Util
     module_function
 
@@ -64,6 +91,7 @@ module HkpClient
     end
 
     # rubocop:disable Metrics/MethodLength
+
     def parse_search_response_entries(src_string)
       src_string.each_line.reduce([]) do |found_keys, line|
         case line
