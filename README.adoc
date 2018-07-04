@@ -1,5 +1,5 @@
-HKPClient
----------
+HKP Client
+==========
 
 image:https://img.shields.io/gem/v/hkp_client.svg["Gem Version", link="https://rubygems.org/gems/hkp_client"]
 image:https://img.shields.io/travis/riboseinc/hkp_client/master.svg["Build Status", link="https://travis-ci.org/riboseinc/hkp_client"]
@@ -12,13 +12,125 @@ HKP Client is a minimalist HKP (OpenPGP HTTP Keyserver Protocol) client, which
 queries PGP public keyservers, and downloads public keys.  It does not support
 submitting keys to keyserver.
 
-Usage
-~~~~~
+NOTE: This gem registers +hkp+, and +hkps+ URI schemes (adds them to
++URI.scheme_list+).
 
-TODO: Write usage instructions here
+Usage
+-----
+
+Searching
+~~~~~~~~~
+
+Searching by some criteria.  Returns search results as an array of arrays.
+
+For exact searches, an +exact+ option can be set to true.  The meaning of
+"exact" is not defined by standard, and may be ignored by servers.
+
+[source,lang=ruby]
+--------------------------------------------------------------------------------
+HkpClient.search "linus@example.com"
+HkpClient.search "linus@example.com", exact: true
+--------------------------------------------------------------------------------
+
+Search operations returns an array of hashes.  In this case, it is a one-element
+array:
+
+[source,lang=ruby]
+--------------------------------------------------------------------------------
+[
+  {
+    :key_id=>"06DA6D18CED048CE87E3E3A01CBBDA571B331AB5",
+    :algorithm=>"1",
+    :key_length=>"2048",
+    :creation_date=>"1507718293",
+    :expiration_date=>nil,
+    :flags=>nil,
+    :uids=>[
+      {
+        :name=>"Linus Torvalds (Example) <linus@example.com>",
+        :creation_date=>"1507718293",
+        :expiration_date=>nil,
+        :flags=>nil
+      }
+    ]
+  }
+]
+--------------------------------------------------------------------------------
+
+Each array item describes a primary key uploaded to keyserver, and is associated
+with one or more UIDs.  For field descriptions, refer to
+https://tools.ietf.org/html/draft-shaw-openpgp-hkp-00#section-5.2[HKP draft,
+section 5.2].
+
+UID's name is already percent-decoded.  Other values may require parsing or
+casting (e.g. timestamps and numbers).
+
+Search results may include expired keys.  If that's unwanted, these keys must
+be filtered out by user.
+
+Fetching keys
+~~~~~~~~~~~~~
+
+Operation returns the ASCII-armored keyring as defined in
+https://tools.ietf.org/html/rfc2440#section-11.1[RFC 2440, section 11.1],
+or +nil+.
+
+For example, executing following snippet:
+
+[source,lang=ruby]
+--------------------------------------------------------------------------------
+HkpClient.get "linus@example.com"
+--------------------------------------------------------------------------------
+
+will return string similar to:
+
+--------------------------------------------------------------------------------
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: SKS 1.1.6
+Comment: Hostname: pgp.lehigh.edu
+
+mQENBFnd9JUBCAC1NMfsImuRAUcsKEjdLlSj0THHNytUDE8CB2I728gJAeixdZMEcPpRKHfc
+BXjW+Q864S4yEY4xgaboFkg/qABA/o0PWzZn2AzhvD5gzrfpfvK4BMrgOtPya7MySgImG1NC
+UYqj2vvJt4/bh8MWxSqvADB3SfLNueBQGvISeGwss9kYHEqoP0lxNSEJPJJpLKeqSov7mZOz
+(…)
+c2gFngOSVOrxJswb8/BUkA==
+=jGC1
+-----END PGP PUBLIC KEY BLOCK-----
+--------------------------------------------------------------------------------
+
+Arbitrary queries
+~~~~~~~~~~~~~~~~~
+
+When above two methods are not flexible enough, a +\#query+ method can be
+called.  It returns an instance of +Faraday::Response+.  All the arguments
+become query string parameters (with exception of +keyserver+, which is
+described in the next section).
+
+For example, a following snippet performs a +vindex+ operation for
++linus@example.com+ query.  The +mr+ option specifies that search results should
+be presented in a machine-readable format.  By default, a human-readable format
+is used, typically HTML.
+
+[source,lang=ruby]
+--------------------------------------------------------------------------------
+HkpClient.query(op: "vindex", search: "linus@example.com", options: "mr")
+--------------------------------------------------------------------------------
+
+Using custom keyserver
+~~~~~~~~~~~~~~~~~~~~~~
+
+A +keyserver+ option can be passed to either +\#search+, +\#get+, or +\#query+
+method.  Accepted URI schemes are +http+, +https+, +hkp+, and +hkps+.
+
+TODO: Easy support for custom certificates.
+
+[source,lang=ruby]
+--------------------------------------------------------------------------------
+HkpClient.get "linus@example.com", keyserver: "hkp://server.you.want:8888"
+--------------------------------------------------------------------------------
 
 Contributing
-~~~~~~~~~~~~
+------------
 
 First, thank you for contributing!  We love pull requests from everyone.
 By participating in this project, you hereby grant Ribose Inc. the right to
@@ -36,19 +148,19 @@ Here are a few technical guidelines to follow:
     request).
 
 Credits
-~~~~~~~
+-------
 
 This gem is developed, maintained and funded by
 https://www.ribose.com[Ribose Inc].
 
 License
-~~~~~~~
+-------
 
 The gem is available as open source under the terms of the
 https://opensource.org/licenses/MIT[MIT License].
 
 Resources
-~~~~~~~~~
+---------
 
 - https://tools.ietf.org/html/draft-shaw-openpgp-hkp-00[HKP protocol definition (IETF draft)]
 - http://www.mit.edu/afs/net.mit.edu/project/pks/thesis/paper/thesis.html[A PGP Public Key Server thesis]
