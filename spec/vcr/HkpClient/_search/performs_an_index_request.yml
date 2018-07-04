@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://pool.sks-keyservers.net:11371/pks/lookup?exact=off&op=index&options=mr&search=linus@example.com
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Jul 2018 12:44:15 GMT
+      Server:
+      - sks_www/1.1.6
+      Content-Length:
+      - '138'
+      X-Hkp-Results-Count:
+      - '1'
+      Content-Type:
+      - text/plain
+      Access-Control-Allow-Origin:
+      - "*"
+      Via:
+      - 1.1 pgpkeys.co.uk:11371 (Apache/2.4.33)
+      Cache-Control:
+      - max-age=300
+      X-Cache:
+      - MISS from pgpkeys.co.uk
+      X-Cache-Detail:
+      - '"cache miss: attempting entity save" from pgpkeys.co.uk'
+    body:
+      encoding: UTF-8
+      string: "info:1:1\npub:06DA6D18CED048CE87E3E3A01CBBDA571B331AB5:1:2048:1507718293::\nuid:Linus
+        Torvalds (Example) <linus@example.com>:1507718293::\n\r\n"
+    http_version: 
+  recorded_at: Wed, 04 Jul 2018 12:44:15 GMT
+recorded_with: VCR 4.0.0
