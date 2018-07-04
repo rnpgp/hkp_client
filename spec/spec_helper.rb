@@ -1,6 +1,12 @@
 require "bundler"
 Bundler.require :default, :development
 
+VCR.configure do |config|
+  config.cassette_library_dir = File.expand_path("vcr", __dir__)
+  config.hook_into :webmock
+  config.configure_rspec_metadata!
+end
+
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = ".rspec_status"
