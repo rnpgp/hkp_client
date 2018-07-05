@@ -20,10 +20,12 @@ NOTE: This gem registers `hkp`, and `hkps` URI schemes (adds them to
 
 Searching by some criteria.  Returns search results as an array of arrays.
 
+The search term does not have to be an e-mail address, but that's 
+
 For exact searches, an `exact` option can be set to true.  The meaning of
 "exact" is not defined by standard, and may be ignored by servers.
 
-[source,lang=ruby]
+[source,ruby]
 --------------------------------------------------------------------------------
 HkpClient.search "linus@example.com"
 HkpClient.search "linus@example.com", exact: true
@@ -32,7 +34,7 @@ HkpClient.search "linus@example.com", exact: true
 Search operations returns an array of hashes.  In this case, it is a one-element
 array:
 
-[source,lang=ruby]
+[source,ruby]
 --------------------------------------------------------------------------------
 [
   {
@@ -73,7 +75,7 @@ or `nil`.
 
 For example, executing following snippet:
 
-[source,lang=ruby]
+[source,ruby]
 --------------------------------------------------------------------------------
 HkpClient.get "linus@example.com"
 --------------------------------------------------------------------------------
@@ -106,7 +108,7 @@ For example, a following snippet performs a `vindex` operation for
 be presented in a machine-readable format.  By default, a human-readable format
 is used, typically HTML.
 
-[source,lang=ruby]
+[source,ruby]
 --------------------------------------------------------------------------------
 HkpClient.query(op: "vindex", search: "linus@example.com", options: "mr")
 --------------------------------------------------------------------------------
@@ -118,7 +120,7 @@ method.  Accepted URI schemes are `http`, `https`, `hkp`, and `hkps`.
 
 TODO: Easy support for custom certificates.
 
-[source,lang=ruby]
+[source,ruby]
 --------------------------------------------------------------------------------
 HkpClient.get "linus@example.com", keyserver: "hkp://server.you.want:8888"
 --------------------------------------------------------------------------------
