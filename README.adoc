@@ -11,8 +11,8 @@ HKP Client is a minimalist HKP (OpenPGP HTTP Keyserver Protocol) client, which
 queries PGP public keyservers, and downloads public keys.  It does not support
 submitting keys to keyserver.
 
-NOTE: This gem registers +hkp+, and +hkps+ URI schemes (adds them to
-+URI.scheme_list+).
+NOTE: This gem registers `hkp`, and `hkps` URI schemes (adds them to
+`URI.scheme_list`).
 
 == Usage
 
@@ -20,7 +20,7 @@ NOTE: This gem registers +hkp+, and +hkps+ URI schemes (adds them to
 
 Searching by some criteria.  Returns search results as an array of arrays.
 
-For exact searches, an +exact+ option can be set to true.  The meaning of
+For exact searches, an `exact` option can be set to true.  The meaning of
 "exact" is not defined by standard, and may be ignored by servers.
 
 [source,lang=ruby]
@@ -69,7 +69,7 @@ be filtered out by user.
 
 Operation returns the ASCII-armored keyring as defined in
 https://tools.ietf.org/html/rfc2440#section-11.1[RFC 2440, section 11.1],
-or +nil+.
+or `nil`.
 
 For example, executing following snippet:
 
@@ -96,13 +96,13 @@ c2gFngOSVOrxJswb8/BUkA==
 
 === Arbitrary queries
 
-When above two methods are not flexible enough, a +#query+ method can be
-called.  It returns an instance of +Faraday::Response+.  All the arguments
-become query string parameters (with exception of +keyserver+, which is
+When above two methods are not flexible enough, a `#query` method can be
+called.  It returns an instance of `Faraday::Response`.  All the arguments
+become query string parameters (with exception of `keyserver`, which is
 described in the next section).
 
-For example, a following snippet performs a +vindex+ operation for
-+linus@example.com+ query.  The +mr+ option specifies that search results should
+For example, a following snippet performs a `vindex` operation for
+`linus@example.com` query.  The `mr` option specifies that search results should
 be presented in a machine-readable format.  By default, a human-readable format
 is used, typically HTML.
 
@@ -113,8 +113,8 @@ HkpClient.query(op: "vindex", search: "linus@example.com", options: "mr")
 
 === Using custom keyserver
 
-A +keyserver+ option can be passed to either +#search+, +#get+, or +#query+
-method.  Accepted URI schemes are +http+, +https+, +hkp+, and +hkps+.
+A `keyserver` option can be passed to either `#search`, `#get`, or `#query`
+method.  Accepted URI schemes are `http`, `https`, `hkp`, and `hkps`.
 
 TODO: Easy support for custom certificates.
 
