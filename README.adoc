@@ -96,7 +96,7 @@ c2gFngOSVOrxJswb8/BUkA==
 
 === Arbitrary queries
 
-When above two methods are not flexible enough, a +\#query+ method can be
+When above two methods are not flexible enough, a +#query+ method can be
 called.  It returns an instance of +Faraday::Response+.  All the arguments
 become query string parameters (with exception of +keyserver+, which is
 described in the next section).
@@ -113,7 +113,7 @@ HkpClient.query(op: "vindex", search: "linus@example.com", options: "mr")
 
 === Using custom keyserver
 
-A +keyserver+ option can be passed to either +\#search+, +\#get+, or +\#query+
+A +keyserver+ option can be passed to either +#search+, +#get+, or +#query+
 method.  Accepted URI schemes are +http+, +https+, +hkp+, and +hkps+.
 
 TODO: Easy support for custom certificates.
