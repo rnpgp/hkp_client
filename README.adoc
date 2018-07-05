@@ -1,5 +1,4 @@
-HKP Client
-==========
+= HKP Client
 
 image:https://img.shields.io/gem/v/hkp_client.svg["Gem Version", link="https://rubygems.org/gems/hkp_client"]
 image:https://img.shields.io/travis/riboseinc/hkp_client/master.svg["Build Status", link="https://travis-ci.org/riboseinc/hkp_client"]
@@ -15,11 +14,9 @@ submitting keys to keyserver.
 NOTE: This gem registers +hkp+, and +hkps+ URI schemes (adds them to
 +URI.scheme_list+).
 
-Usage
------
+== Usage
 
-Searching
-~~~~~~~~~
+=== Searching
 
 Searching by some criteria.  Returns search results as an array of arrays.
 
@@ -68,8 +65,7 @@ casting (e.g. timestamps and numbers).
 Search results may include expired keys.  If that's unwanted, these keys must
 be filtered out by user.
 
-Fetching keys
-~~~~~~~~~~~~~
+=== Fetching keys
 
 Operation returns the ASCII-armored keyring as defined in
 https://tools.ietf.org/html/rfc2440#section-11.1[RFC 2440, section 11.1],
@@ -98,8 +94,7 @@ c2gFngOSVOrxJswb8/BUkA==
 -----END PGP PUBLIC KEY BLOCK-----
 --------------------------------------------------------------------------------
 
-Arbitrary queries
-~~~~~~~~~~~~~~~~~
+=== Arbitrary queries
 
 When above two methods are not flexible enough, a +\#query+ method can be
 called.  It returns an instance of +Faraday::Response+.  All the arguments
@@ -116,8 +111,7 @@ is used, typically HTML.
 HkpClient.query(op: "vindex", search: "linus@example.com", options: "mr")
 --------------------------------------------------------------------------------
 
-Using custom keyserver
-~~~~~~~~~~~~~~~~~~~~~~
+=== Using custom keyserver
 
 A +keyserver+ option can be passed to either +\#search+, +\#get+, or +\#query+
 method.  Accepted URI schemes are +http+, +https+, +hkp+, and +hkps+.
@@ -129,8 +123,7 @@ TODO: Easy support for custom certificates.
 HkpClient.get "linus@example.com", keyserver: "hkp://server.you.want:8888"
 --------------------------------------------------------------------------------
 
-Contributing
-------------
+== Contributing
 
 First, thank you for contributing!  We love pull requests from everyone.
 By participating in this project, you hereby grant Ribose Inc. the right to
@@ -147,20 +140,17 @@ Here are a few technical guidelines to follow:
     Rubocop, also Hound CI will report any offences when you open a pull
     request).
 
-Credits
--------
+== Credits
 
 This gem is developed, maintained and funded by
 https://www.ribose.com[Ribose Inc].
 
-License
--------
+== License
 
 The gem is available as open source under the terms of the
 https://opensource.org/licenses/MIT[MIT License].
 
-Resources
----------
+== Resources
 
 - https://tools.ietf.org/html/draft-shaw-openpgp-hkp-00[HKP protocol definition (IETF draft)]
 - http://www.mit.edu/afs/net.mit.edu/project/pks/thesis/paper/thesis.html[A PGP Public Key Server thesis]
